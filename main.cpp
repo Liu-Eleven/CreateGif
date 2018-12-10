@@ -1,8 +1,9 @@
-﻿#include "widget.h"
+﻿#include "recordwidget.h"
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
     QApplication a(argc, argv);
-    Widget w;
+    RecordWidget w;
     w.show();
 
     return a.exec();

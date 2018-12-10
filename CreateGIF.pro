@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += widgets
+QT       += widgets core gui
 
 TARGET = CreateGIF
 TEMPLATE = app
@@ -24,16 +24,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        widget.cpp
+    recordwidget.cpp
 
 HEADERS += \
-        widget.h \
-    gif.h
+    gif.h \
+    recordwidget.h
 
 FORMS += \
-        widget.ui
+    recordwidget.ui
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+win32 {RC_FILE  = $$PWD/app.rc}
+
+RESOURCES += \
+    images.qrc
