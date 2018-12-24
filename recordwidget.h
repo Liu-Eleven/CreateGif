@@ -1,16 +1,18 @@
-﻿#ifndef WIDGET_H
-#define WIDGET_H
+﻿#ifndef RECORDWIDGET_H
+#define RECORDWIDGET_H
 
 #include <QtWidgets>
 #include <gif.h>
 #include <QImage>
 #include <QTimer>
 
+#include "autosizewidget.h"
+
 namespace Ui {
 class RecordWidget;
 }
 
-class RecordWidget : public QWidget{
+class RecordWidget : public AutoSizeWidget {
     Q_OBJECT
 
 public:
@@ -46,10 +48,14 @@ protected:
     bool   m_mousePressed;
 
     void paintEvent(QPaintEvent *);
+#if 0
     // 重构鼠标事件，实现拖动
     void mouseMoveEvent(QMouseEvent *e);
     void mousePressEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *);
+#else
+    void resizeEvent(QResizeEvent *event);
+#endif
 };
 
-#endif // WIDGET_H
+#endif // RECORDWIDGET_H

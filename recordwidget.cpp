@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include <QApplication>
 #include <QMouseEvent>
+#include <QResizeEvent>
 #include <QPainter>
 #include <QDebug>
 #include <QStyle>
@@ -13,7 +14,7 @@
 #include <QScreen>
 
 RecordWidget::RecordWidget(QWidget *parent) :
-    QWidget(parent),
+    AutoSizeWidget(parent),
     ui(new Ui::RecordWidget)
 {
     ui->setupUi(this);
@@ -74,7 +75,7 @@ void RecordWidget::on_btnStop_clicked()
 
     ui->labelStatus->setText("录制完成：" + m_strFileName);
 
-#if 1
+#if 0
     // 打开文件
     QDesktopServices::openUrl(QUrl(m_strFileName));
 #endif
@@ -107,6 +108,8 @@ void RecordWidget::paintEvent(QPaintEvent *)
     painter.fillRect(m_rectRecord, Qt::SolidPattern );
 }
 
+
+#if 0
 void RecordWidget::mouseMoveEvent(QMouseEvent *e)
 {
     if (m_mousePressed && (e->buttons() && Qt::LeftButton))
@@ -129,6 +132,15 @@ void RecordWidget::mouseReleaseEvent(QMouseEvent *)
 {
     m_mousePressed = false;
 }
+#else
+void RecordWidget::resizeEvent(QResizeEvent *event)
+{
+    int nW = event->size().width() - 4;
+    ui->lineEditWidth->setText(QString::number(nW));
+    int nH = event->size().height() - 78;
+    ui->lineEditHeight->setText(QString::number(nH));
+}
+#endif
 
 void RecordWidget::on_btnClose_clicked()
 {

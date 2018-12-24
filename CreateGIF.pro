@@ -24,11 +24,13 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    recordwidget.cpp
+    recordwidget.cpp \
+    autosizewidget.cpp
 
 HEADERS += \
     gif.h \
-    recordwidget.h
+    recordwidget.h \
+    autosizewidget.h
 
 FORMS += \
     recordwidget.ui
